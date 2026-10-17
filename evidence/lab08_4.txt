@@ -1,0 +1,18 @@
+{
+  "present_host": "db.example",
+  "missing_host": "localhost",
+  "map": "Some(value=4)",
+  "bind": "Some(value=4)",
+  "sequence_success": "Ok(value=[1, 2])",
+  "sequence_error": "Err(error='first')",
+  "partition": [
+    [
+      1,
+      2
+    ],
+    [
+      "bad"
+    ]
+  ],
+  "try_int": "Err(error=\"ValueError: invalid literal for int() with base 10: 'abc'\")"
+}

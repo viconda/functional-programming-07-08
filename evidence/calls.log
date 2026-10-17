@@ -1,0 +1,14 @@
+INFO:__main__:fetch args=() kwargs={}
+INFO:__main__:fetch -> 'данные'
+INFO:lab08.protocol:process_request args=('CALC 2 + 3',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": true, "value": 5.0}'
+INFO:lab08.protocol:process_request args=('UPPER привет, мир',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": true, "value": "ПРИВЕТ, МИР"}'
+INFO:lab08.protocol:process_request args=('STATS 1 5 7',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": true, "value": {"count": 3, "min": 1.0, "max": 7.0, "mean": 4.333333333333333}}'
+INFO:lab08.protocol:process_request args=('CONVERT 2 1 10',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": true, "value": 19.0}'
+INFO:lab08.protocol:process_request args=('CALC 1 / 0',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": false, "error": "деление на ноль"}'
+INFO:lab08.protocol:process_request args=('UNKNOWN',) kwargs={}
+INFO:lab08.protocol:process_request -> '{"ok": false, "error": "неизвестная команда"}'

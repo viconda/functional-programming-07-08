@@ -1,0 +1,7 @@
+{
+  "timestamp": "2026-10-18T00:41:46.456996+05:00",
+  "python": "3.12.14",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "command": "python run_all.py",
+  "cwd": "C:\\Users\\shvac\\Documents\\Лабораторные\\Функциональное программирование\\Работы_07_08"
+}

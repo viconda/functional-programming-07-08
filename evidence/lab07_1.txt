@@ -1,0 +1,71 @@
+{
+  "comparison": [
+    {
+      "decorator": "memoize",
+      "function": "fib",
+      "result": 832040,
+      "cache": {
+        "hits": 28,
+        "misses": 31,
+        "maxsize": null,
+        "currsize": 31
+      },
+      "cold_seconds": 2.9499875381588936e-05,
+      "warm_seconds": 4.00003045797348e-07
+    },
+    {
+      "decorator": "memoize",
+      "function": "grid",
+      "result": 2333606220,
+      "cache": {
+        "hits": 256,
+        "misses": 323,
+        "maxsize": null,
+        "currsize": 323
+      },
+      "cold_seconds": 0.0004409998655319214,
+      "warm_seconds": 4.998873919248581e-07
+    },
+    {
+      "decorator": "lru_cache",
+      "function": "fib",
+      "result": 832040,
+      "cache": {
+        "hits": 28,
+        "misses": 31,
+        "maxsize": null,
+        "currsize": 31
+      },
+      "cold_seconds": 6.8999361246824265e-06,
+      "warm_seconds": 1.0011717677116394e-07
+    },
+    {
+      "decorator": "lru_cache",
+      "function": "grid",
+      "result": 2333606220,
+      "cache": {
+        "hits": 256,
+        "misses": 323,
+        "maxsize": null,
+        "currsize": 323
+      },
+      "cold_seconds": 7.299985736608505e-05,
+      "warm_seconds": 1.0011717677116394e-07
+    }
+  ],
+  "lru_sequence": [
+    1,
+    2,
+    3,
+    1,
+    4,
+    1,
+    2
+  ],
+  "lru_cache": {
+    "hits": 2,
+    "misses": 5,
+    "maxsize": 3,
+    "currsize": 3
+  }
+}

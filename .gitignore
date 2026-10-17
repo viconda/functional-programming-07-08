@@ -4,3 +4,7 @@ __pycache__/
 *.pyc
 *.zip
 qa/
+
+evidence/pages/
+evidence/page_manifest.json
+data/preliminary_results.json

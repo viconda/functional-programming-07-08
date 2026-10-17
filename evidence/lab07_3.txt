@@ -1,0 +1,16 @@
+{
+  "sum_100000": 4999950000,
+  "sum_trampoline_seconds": 0.023792400024831295,
+  "sum_loop_seconds": 0.002220200141891837,
+  "collatz_checked": 1000000,
+  "collatz_equal": true,
+  "collatz_max_start": 837799,
+  "collatz_max_transitions": 524,
+  "collatz_length_including_start": 525,
+  "collatz_1000000": 152,
+  "collatz_trampoline_seconds": 1.6039618998765945,
+  "collatz_loop_seconds": 0.997290899977088,
+  "is_even_1000000": true,
+  "is_odd_1000000": false,
+  "function_result_preserved": true
+}

@@ -1,0 +1,15 @@
+{
+  "reports": {
+    "lecture07": 11,
+    "lecture08": 12,
+    "lab07": 18,
+    "lab08": 15
+  },
+  "all_pages_visually_reviewed": true,
+  "control_questions": 36,
+  "pytest_cases_passed": 36,
+  "ruff": "passed",
+  "practical_results": "actual execution in data/results.json and evidence",
+  "screenshots_present": false,
+  "screenshots_blocker": "Browser control stopped because the URL could not be verified; no simulated screenshots were used."
+}

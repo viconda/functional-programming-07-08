@@ -1,0 +1,1091 @@
+{
+  "environment": {
+    "timestamp": "2026-10-18T00:41:46.456996+05:00",
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26100-SP0",
+    "command": "python run_all.py",
+    "cwd": "C:\\Users\\shvac\\Documents\\Лабораторные\\Функциональное программирование\\Работы_07_08"
+  },
+  "lab07_0": {
+    "input": [
+      "лямбда",
+      "лампа"
+    ],
+    "distance": 3,
+    "operations": [
+      {
+        "kind": "replace",
+        "index": 1,
+        "old": "я",
+        "new": "а"
+      },
+      {
+        "kind": "delete",
+        "index": 3,
+        "old": "б",
+        "new": ""
+      },
+      {
+        "kind": "replace",
+        "index": 3,
+        "old": "д",
+        "new": "п"
+      }
+    ],
+    "applied": "лампа",
+    "cache": {
+      "hits": 26,
+      "misses": 30,
+      "maxsize": null,
+      "currsize": 30
+    },
+    "name_input": [
+      "Швачкина",
+      "Виктория"
+    ],
+    "name_distance": 8,
+    "name_cache": {
+      "hits": 106,
+      "misses": 81,
+      "maxsize": null,
+      "currsize": 81
+    },
+    "ties": [
+      [
+        2,
+        [
+          {
+            "kind": "delete",
+            "index": 0,
+            "old": "a",
+            "new": ""
+          },
+          {
+            "kind": "insert",
+            "index": 1,
+            "old": "",
+            "new": "a"
+          }
+        ]
+      ],
+      [
+        2,
+        [
+          {
+            "kind": "replace",
+            "index": 0,
+            "old": "a",
+            "new": "b"
+          },
+          {
+            "kind": "replace",
+            "index": 1,
+            "old": "b",
+            "new": "a"
+          }
+        ]
+      ]
+    ]
+  },
+  "lab07_1": {
+    "comparison": [
+      {
+        "decorator": "memoize",
+        "function": "fib",
+        "result": 832040,
+        "cache": {
+          "hits": 28,
+          "misses": 31,
+          "maxsize": null,
+          "currsize": 31
+        },
+        "cold_seconds": 2.9499875381588936e-05,
+        "warm_seconds": 4.00003045797348e-07
+      },
+      {
+        "decorator": "memoize",
+        "function": "grid",
+        "result": 2333606220,
+        "cache": {
+          "hits": 256,
+          "misses": 323,
+          "maxsize": null,
+          "currsize": 323
+        },
+        "cold_seconds": 0.0004409998655319214,
+        "warm_seconds": 4.998873919248581e-07
+      },
+      {
+        "decorator": "lru_cache",
+        "function": "fib",
+        "result": 832040,
+        "cache": {
+          "hits": 28,
+          "misses": 31,
+          "maxsize": null,
+          "currsize": 31
+        },
+        "cold_seconds": 6.8999361246824265e-06,
+        "warm_seconds": 1.0011717677116394e-07
+      },
+      {
+        "decorator": "lru_cache",
+        "function": "grid",
+        "result": 2333606220,
+        "cache": {
+          "hits": 256,
+          "misses": 323,
+          "maxsize": null,
+          "currsize": 323
+        },
+        "cold_seconds": 7.299985736608505e-05,
+        "warm_seconds": 1.0011717677116394e-07
+      }
+    ],
+    "lru_sequence": [
+      1,
+      2,
+      3,
+      1,
+      4,
+      1,
+      2
+    ],
+    "lru_cache": {
+      "hits": 2,
+      "misses": 5,
+      "maxsize": 3,
+      "currsize": 3
+    }
+  },
+  "lab07_2": {
+    "stairs_n10_steps135": [
+      47,
+      47
+    ],
+    "coin_ways_10_125": [
+      10,
+      10
+    ],
+    "lis_input": [
+      3,
+      1,
+      2,
+      5,
+      4,
+      6
+    ],
+    "lis": [
+      [
+        4,
+        [
+          1,
+          2,
+          5,
+          6
+        ]
+      ],
+      [
+        4,
+        [
+          1,
+          2,
+          5,
+          6
+        ]
+      ]
+    ],
+    "lcs_input": [
+      "ФУНКЦИОНАЛЬНЫЙ",
+      "ФУНДАМЕНТАЛЬНЫЙ"
+    ],
+    "lcs": [
+      "ФУННАЛЬНЫЙ",
+      "ФУННАЛЬНЫЙ"
+    ],
+    "knapsack_capacity5": [
+      [
+        4500,
+        [
+          "камера",
+          "гитара"
+        ]
+      ],
+      [
+        4500,
+        [
+          "камера",
+          "гитара"
+        ]
+      ]
+    ]
+  },
+  "lab07_3": {
+    "sum_100000": 4999950000,
+    "sum_trampoline_seconds": 0.023792400024831295,
+    "sum_loop_seconds": 0.002220200141891837,
+    "collatz_checked": 1000000,
+    "collatz_equal": true,
+    "collatz_max_start": 837799,
+    "collatz_max_transitions": 524,
+    "collatz_length_including_start": 525,
+    "collatz_1000000": 152,
+    "collatz_trampoline_seconds": 1.6039618998765945,
+    "collatz_loop_seconds": 0.997290899977088,
+    "is_even_1000000": true,
+    "is_odd_1000000": false,
+    "function_result_preserved": true
+  },
+  "lab07_4": {
+    "tree_keys_from_lab06": [
+      50,
+      30,
+      70,
+      20,
+      40,
+      60,
+      80,
+      35
+    ],
+    "dfs_recursive": [
+      50,
+      30,
+      20,
+      40,
+      35,
+      70,
+      60,
+      80
+    ],
+    "dfs_stack": [
+      50,
+      30,
+      20,
+      40,
+      35,
+      70,
+      60,
+      80
+    ],
+    "hanoi_n3": [
+      [
+        "A",
+        "C"
+      ],
+      [
+        "A",
+        "B"
+      ],
+      [
+        "C",
+        "B"
+      ],
+      [
+        "A",
+        "C"
+      ],
+      [
+        "B",
+        "A"
+      ],
+      [
+        "B",
+        "C"
+      ],
+      [
+        "A",
+        "C"
+      ]
+    ],
+    "hanoi_equal_0_to8": true,
+    "ack_values_checked": 1001,
+    "ack_2_1000": 2003,
+    "ack_recursive_equal_0_to100": true
+  },
+  "lab07_5": {
+    "records": [
+      {
+        "n": 5,
+        "value": 5,
+        "plain": 1.00000761449337e-06,
+        "cached": 5.400041118264198e-06,
+        "iterative": 8.00006091594696e-07,
+        "plain_calls": 15,
+        "hits": 3,
+        "misses": 6
+      },
+      {
+        "n": 6,
+        "value": 8,
+        "plain": 1.90013088285923e-06,
+        "cached": 7.899943739175797e-06,
+        "iterative": 7.00121745467186e-07,
+        "plain_calls": 25,
+        "hits": 4,
+        "misses": 7
+      },
+      {
+        "n": 7,
+        "value": 13,
+        "plain": 2.700136974453926e-06,
+        "cached": 5.300156772136688e-06,
+        "iterative": 2.998858690261841e-07,
+        "plain_calls": 41,
+        "hits": 5,
+        "misses": 8
+      },
+      {
+        "n": 8,
+        "value": 21,
+        "plain": 5.19980676472187e-06,
+        "cached": 8.700182661414146e-06,
+        "iterative": 5.00120222568512e-07,
+        "plain_calls": 67,
+        "hits": 6,
+        "misses": 9
+      },
+      {
+        "n": 9,
+        "value": 34,
+        "plain": 7.0999376475811005e-06,
+        "cached": 4.400033503770828e-06,
+        "iterative": 4.00003045797348e-07,
+        "plain_calls": 109,
+        "hits": 7,
+        "misses": 10
+      },
+      {
+        "n": 10,
+        "value": 55,
+        "plain": 1.0800082236528397e-05,
+        "cached": 7.100170478224754e-06,
+        "iterative": 4.00003045797348e-07,
+        "plain_calls": 177,
+        "hits": 8,
+        "misses": 11
+      },
+      {
+        "n": 11,
+        "value": 89,
+        "plain": 2.519995905458927e-05,
+        "cached": 9.899958968162537e-06,
+        "iterative": 5.00120222568512e-07,
+        "plain_calls": 287,
+        "hits": 9,
+        "misses": 12
+      },
+      {
+        "n": 12,
+        "value": 144,
+        "plain": 2.0499806851148605e-05,
+        "cached": 5.699926987290382e-06,
+        "iterative": 6.00004568696022e-07,
+        "plain_calls": 465,
+        "hits": 10,
+        "misses": 13
+      },
+      {
+        "n": 13,
+        "value": 233,
+        "plain": 3.7800054997205734e-05,
+        "cached": 4.300149157643318e-06,
+        "iterative": 4.998873919248581e-07,
+        "plain_calls": 753,
+        "hits": 11,
+        "misses": 14
+      },
+      {
+        "n": 14,
+        "value": 377,
+        "plain": 5.439994856715202e-05,
+        "cached": 4.400033503770828e-06,
+        "iterative": 4.998873919248581e-07,
+        "plain_calls": 1219,
+        "hits": 12,
+        "misses": 15
+      },
+      {
+        "n": 15,
+        "value": 610,
+        "plain": 8.999998681247234e-05,
+        "cached": 6.4999330788850784e-06,
+        "iterative": 5.00120222568512e-07,
+        "plain_calls": 1973,
+        "hits": 13,
+        "misses": 16
+      },
+      {
+        "n": 16,
+        "value": 987,
+        "plain": 0.00014909985475242138,
+        "cached": 9.899958968162537e-06,
+        "iterative": 8.00006091594696e-07,
+        "plain_calls": 3193,
+        "hits": 14,
+        "misses": 17
+      },
+      {
+        "n": 17,
+        "value": 1597,
+        "plain": 0.00024489988572895527,
+        "cached": 6.9998204708099365e-06,
+        "iterative": 8.00006091594696e-07,
+        "plain_calls": 5167,
+        "hits": 15,
+        "misses": 18
+      },
+      {
+        "n": 18,
+        "value": 2584,
+        "plain": 0.00041619990952312946,
+        "cached": 5.3998082876205444e-06,
+        "iterative": 4.998873919248581e-07,
+        "plain_calls": 8361,
+        "hits": 16,
+        "misses": 19
+      },
+      {
+        "n": 19,
+        "value": 4181,
+        "plain": 0.0006825998425483704,
+        "cached": 5.500158295035362e-06,
+        "iterative": 6.00004568696022e-07,
+        "plain_calls": 13529,
+        "hits": 17,
+        "misses": 20
+      },
+      {
+        "n": 20,
+        "value": 6765,
+        "plain": 0.001083899987861514,
+        "cached": 5.499925464391708e-06,
+        "iterative": 6.00004568696022e-07,
+        "plain_calls": 21891,
+        "hits": 18,
+        "misses": 21
+      },
+      {
+        "n": 21,
+        "value": 10946,
+        "plain": 0.0020961000118404627,
+        "cached": 1.4200108125805855e-05,
+        "iterative": 8.998904377222061e-07,
+        "plain_calls": 35421,
+        "hits": 19,
+        "misses": 22
+      },
+      {
+        "n": 22,
+        "value": 17711,
+        "plain": 0.0027601998299360275,
+        "cached": 1.3699987903237343e-05,
+        "iterative": 1.100124791264534e-06,
+        "plain_calls": 57313,
+        "hits": 20,
+        "misses": 23
+      },
+      {
+        "n": 23,
+        "value": 28657,
+        "plain": 0.005756299942731857,
+        "cached": 1.0999850928783417e-05,
+        "iterative": 1.00000761449337e-06,
+        "plain_calls": 92735,
+        "hits": 21,
+        "misses": 24
+      },
+      {
+        "n": 24,
+        "value": 46368,
+        "plain": 0.006811399944126606,
+        "cached": 1.0499963536858559e-05,
+        "iterative": 1.800013706088066e-06,
+        "plain_calls": 150049,
+        "hits": 22,
+        "misses": 25
+      },
+      {
+        "n": 25,
+        "value": 75025,
+        "plain": 0.013859400060027838,
+        "cached": 1.209997572004795e-05,
+        "iterative": 1.00000761449337e-06,
+        "plain_calls": 242785,
+        "hits": 23,
+        "misses": 26
+      },
+      {
+        "n": 26,
+        "value": 121393,
+        "plain": 0.023074900032952428,
+        "cached": 9.699957445263863e-06,
+        "iterative": 8.998904377222061e-07,
+        "plain_calls": 392835,
+        "hits": 24,
+        "misses": 27
+      },
+      {
+        "n": 27,
+        "value": 196418,
+        "plain": 0.028034700080752373,
+        "cached": 3.2499898225069046e-05,
+        "iterative": 1.800013706088066e-06,
+        "plain_calls": 635621,
+        "hits": 25,
+        "misses": 28
+      },
+      {
+        "n": 28,
+        "value": 317811,
+        "plain": 0.04824710008688271,
+        "cached": 1.7200130969285965e-05,
+        "iterative": 1.300126314163208e-06,
+        "plain_calls": 1028457,
+        "hits": 26,
+        "misses": 29
+      },
+      {
+        "n": 29,
+        "value": 514229,
+        "plain": 0.0778105000499636,
+        "cached": 3.3999793231487274e-05,
+        "iterative": 1.0998919606208801e-06,
+        "plain_calls": 1664079,
+        "hits": 27,
+        "misses": 30
+      },
+      {
+        "n": 30,
+        "value": 832040,
+        "plain": 0.12820359994657338,
+        "cached": 1.1899974197149277e-05,
+        "iterative": 1.200009137392044e-06,
+        "plain_calls": 2692537,
+        "hits": 28,
+        "misses": 31
+      }
+    ],
+    "repeats": 3,
+    "aggregate": "median",
+    "cache_policy": "fresh cache per repeat",
+    "table": [
+      [
+        4,
+        3,
+        3,
+        3,
+        2,
+        1,
+        0
+      ],
+      [
+        4,
+        3,
+        3,
+        2,
+        2,
+        1,
+        0
+      ],
+      [
+        4,
+        3,
+        3,
+        2,
+        2,
+        1,
+        0
+      ],
+      [
+        4,
+        3,
+        2,
+        2,
+        2,
+        1,
+        0
+      ],
+      [
+        3,
+        3,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      [
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "lab07_6": {
+    "matrix": [
+      [
+        1,
+        3,
+        1,
+        2
+      ],
+      [
+        1,
+        5,
+        1,
+        1
+      ],
+      [
+        4,
+        2,
+        1,
+        3
+      ]
+    ],
+    "cost": 10,
+    "path": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "cell_values": [
+      1,
+      3,
+      1,
+      1,
+      1,
+      3
+    ],
+    "cache": {
+      "hits": 12,
+      "misses": 12,
+      "maxsize": null,
+      "currsize": 12
+    },
+    "bottom_up": [
+      10,
+      [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    ],
+    "timings": [
+      {
+        "n": 5,
+        "cached": 1.7900019884109497e-05,
+        "iterative": 2.5700079277157784e-05
+      },
+      {
+        "n": 10,
+        "cached": 6.620003841817379e-05,
+        "iterative": 4.259985871613026e-05
+      },
+      {
+        "n": 20,
+        "cached": 0.0001642000861465931,
+        "iterative": 0.0001430001575499773
+      },
+      {
+        "n": 40,
+        "cached": 0.0006639999337494373,
+        "iterative": 0.0005333998706191778
+      },
+      {
+        "n": 80,
+        "cached": 0.003513599978759885,
+        "iterative": 0.0021470000501722097
+      },
+      {
+        "n": 120,
+        "cached": 0.007917100097984076,
+        "iterative": 0.0049257001373916864
+      }
+    ]
+  },
+  "lab07_extra": {
+    "fib100": 354224848179261915075,
+    "old_size": 0,
+    "new_size": 101,
+    "immutable_state_seconds": 0.00023949984461069107,
+    "cache_seconds": 2.300017513334751e-05
+  },
+  "lab08_1": {
+    "words": 3,
+    "compose": "лямбда",
+    "pipe_value": 4,
+    "slugify_input": "  Привет,   Мир! Ёж и Щука  ",
+    "slugify": "privet-mir-yozh-i-shchuka"
+  },
+  "lab08_2": {
+    "convert_map": [
+      19,
+      39,
+      59
+    ],
+    "between_filter": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "replace_map": [
+      "a_b",
+      "c_d"
+    ],
+    "defaults_early_middle_late": [
+      9,
+      9,
+      9
+    ],
+    "partial": [
+      19,
+      39,
+      59
+    ],
+    "lambda": [
+      19,
+      39,
+      59
+    ]
+  },
+  "lab08_3": {
+    "fetch": "данные",
+    "attempts": 3,
+    "history": [
+      0.0003013000823557377
+    ],
+    "name": "fetch",
+    "doc": "Демонстрация восстановления после двух ошибок соединения.",
+    "signature": "() -> str",
+    "ttl": [
+      [
+        0,
+        9,
+        1
+      ],
+      [
+        4.999,
+        9,
+        1
+      ],
+      [
+        5,
+        9,
+        2
+      ],
+      [
+        5,
+        9,
+        2
+      ]
+    ],
+    "typecheck_valid": 5,
+    "type_errors": [
+      "a: ожидается int",
+      "a: ожидается int"
+    ]
+  },
+  "lab08_4": {
+    "present_host": "db.example",
+    "missing_host": "localhost",
+    "map": "Some(value=4)",
+    "bind": "Some(value=4)",
+    "sequence_success": "Ok(value=[1, 2])",
+    "sequence_error": "Err(error='first')",
+    "partition": [
+      [
+        1,
+        2
+      ],
+      [
+        "bad"
+      ]
+    ],
+    "try_int": "Err(error=\"ValueError: invalid literal for int() with base 10: 'abc'\")"
+  },
+  "lab08_5": {
+    "shipping": [
+      200,
+      300,
+      250,
+      0.0
+    ],
+    "min": 0.0,
+    "max": 300,
+    "history": [
+      {
+        "text": "",
+        "cursor": 0
+      },
+      {
+        "text": "abc",
+        "cursor": 3
+      },
+      {
+        "text": "abc",
+        "cursor": 1
+      },
+      {
+        "text": "ac",
+        "cursor": 1
+      }
+    ],
+    "undo": {
+      "text": "abc",
+      "cursor": 1
+    },
+    "redo": {
+      "text": "ac",
+      "cursor": 1
+    },
+    "branch": {
+      "text": "aXbc",
+      "cursor": 2
+    },
+    "chain_zero": 0
+  },
+  "lab08_6": {
+    "input": [
+      "1;BOOK:4;Алматы, дом 1;card",
+      "2;PEN:2;Алматы, дом 2;cash",
+      ";PEN:1;Алматы, дом 2;cash",
+      "4;UNKNOWN:1;Алматы, дом 2;cash",
+      "5;PEN:0;Алматы, дом 2;cash",
+      "6;PEN:1;x;cash",
+      "7;PEN:1;Алматы, дом 2;crypto",
+      "broken"
+    ],
+    "success": 2,
+    "rejected": 6,
+    "errors": {
+      "количество вне 1..99": 1,
+      "неизвестный способ оплаты": 1,
+      "неизвестный товар": 1,
+      "неполный адрес": 1,
+      "пустой код заказа": 1,
+      "разбор: нужно 4 поля": 1
+    },
+    "orders": [
+      {
+        "code": "1",
+        "items": [
+          [
+            "BOOK",
+            4
+          ]
+        ],
+        "address": "Алматы, дом 1",
+        "payment": "card",
+        "total": 20000,
+        "delivery": 0,
+        "payable": 20000
+      },
+      {
+        "code": "2",
+        "items": [
+          [
+            "PEN",
+            2
+          ]
+        ],
+        "address": "Алматы, дом 2",
+        "payment": "cash",
+        "total": 1000,
+        "delivery": 1500,
+        "payable": 2500
+      }
+    ]
+  },
+  "tcp": {
+    "transport": "TCP 127.0.0.1",
+    "port": 59767,
+    "pairs": [
+      [
+        "CALC 2 + 3",
+        "{\"ok\": true, \"value\": 5.0}"
+      ],
+      [
+        "UPPER привет, мир",
+        "{\"ok\": true, \"value\": \"ПРИВЕТ, МИР\"}"
+      ],
+      [
+        "STATS 1 5 7",
+        "{\"ok\": true, \"value\": {\"count\": 3, \"min\": 1.0, \"max\": 7.0, \"mean\": 4.333333333333333}}"
+      ],
+      [
+        "CONVERT 2 1 10",
+        "{\"ok\": true, \"value\": 19.0}"
+      ],
+      [
+        "CALC 1 / 0",
+        "{\"ok\": false, \"error\": \"деление на ноль\"}"
+      ],
+      [
+        "UNKNOWN",
+        "{\"ok\": false, \"error\": \"неизвестная команда\"}"
+      ]
+    ],
+    "decoded": [
+      "Ok(value=5.0)",
+      "Ok(value='ПРИВЕТ, МИР')",
+      "Ok(value={'count': 3, 'min': 1.0, 'max': 7.0, 'mean': 4.333333333333333})",
+      "Ok(value=19.0)",
+      "Err(error='деление на ноль')",
+      "Err(error='неизвестная команда')"
+    ],
+    "handler_calls": 6,
+    "seconds": [
+      0.0005074001383036375,
+      0.00012909993529319763,
+      0.0001363998744636774,
+      0.00013479986228048801,
+      0.00029310001991689205,
+      9.389990009367466e-05
+    ]
+  },
+  "lecture08_structures": {
+    "a": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "b": [
+      10,
+      2,
+      3,
+      4
+    ],
+    "shared_tail": true,
+    "stack_pop": [
+      1,
+      [
+        2,
+        3,
+        4
+      ]
+    ],
+    "queue_first_two": [
+      "A",
+      "B"
+    ],
+    "queue_remaining": "Queue(front=Cons(head='C', tail=None), back=Cons(head='D', tail=None))",
+    "old_queue_preserved": "Queue(front=None, back=Cons(head='C', tail=Cons(head='B', tail=Cons(head='A', tail=None))))",
+    "template_method": 6
+  },
+  "lecture07_extra": {
+    "factorial5000_bits": 54233,
+    "walk": [
+      [
+        0,
+        50
+      ],
+      [
+        1,
+        30
+      ],
+      [
+        2,
+        20
+      ],
+      [
+        2,
+        40
+      ],
+      [
+        3,
+        35
+      ],
+      [
+        1,
+        70
+      ],
+      [
+        2,
+        60
+      ],
+      [
+        2,
+        80
+      ]
+    ],
+    "min_coins93": 6
+  },
+  "lecture07_examples": {
+    "stdout": "\nПример из таблицы 2\n354224848179261915075\n\nПример из таблицы 4\n6 2333606220 323\n\nПример из таблицы 6\nбез кэша: 0.0264 с, с кэшем: 0.000024 с\nCacheInfo(hits=25, misses=28, maxsize=None, currsize=28)\nCacheInfo(hits=2, misses=5, maxsize=3, currsize=3)\n\nПример из таблицы 9\n6 6\n-1 -1\n\nПример из таблицы 11\nФУННАЛЬНЫЙ\n\nПример из таблицы 13\n4 2\n\nПример из таблицы 15\n(4500, ('камера', 'гитара'))\n\nПример из таблицы 17\nTrue\n\nПример из таблицы 19\n3628800\n\nПример из таблицы 21\n54233\nFalse\n\nПример из таблицы 23\n['A', 'B', 'D', 'E', 'C', 'F'] ['A', 'B', 'D', 'E', 'C', 'F']\n\nПример из таблицы 25\nA\n  B\n    D\n    E\n  C\n    F\n"
+  },
+  "lecture08_examples": {
+    "stdout": "\nПример из таблицы 1\n4\n'лямбда'\n\nПример из таблицы 3\n[7, 64, 85, 100]\n\nПример из таблицы 5\n8960.0 10080.0\n[896.0, 2240.0]\n\nПример из таблицы 7\nslow_sum выполнена за 0.0710 с\nslow_sum Сумма квадратов.\n\nПример из таблицы 9\nпопытка 1 не удалась: таймаут\nпопытка 2 не удалась: сброс\nданные\n\nПример из таблицы 11\nвызов enroll({'name': 'Аружан', 'age': 18, 'gpa': 3.6})\nАружан зачислен(а)\nвызов enroll({'name': 'Ерлан', 'age': 12, 'gpa': 3.0})\nОшибка: недопустимое значение age=12\n\nПример из таблицы 13\nno_discount 54000\nstudent_discount 43200.0\nbulk_discount 48600.0\n\nПример из таблицы 15\n[(0, 0), (1, 0), (1, 2), (-2, 3)]\n\nПример из таблицы 17\nАЛМАТЫ | город не указан | город не указан\n\nПример из таблицы 19\n95 -> A\n70 -> C\nabc -> ошибка: 'abc' не число\n150 -> ошибка: 150 вне диапазона 0..100\n\nПример из таблицы 21\n[1, 2, 3, 4] [10, 2, 3, 4] True\n\nПример из таблицы 23\nA B Queue(front=('C',), back=('D',)) Queue(front=(), back=('C', 'B', 'A'))\n"
+  },
+  "lab07_example": {
+    "stdout": "статистика кэша: CacheInfo(hits=26, misses=30, maxsize=None, currsize=30)\n3 (\"заменить 'я' на 'а'\", \"удалить 'б'\", \"заменить 'д' на 'п'\")\n"
+  },
+  "lab08_example": {
+    "stdout": "ПРИНЯТО   a.nurlanova CSE6742\nОТКЛОНЕНО Петров Иван — некорректный email\nОТКЛОНЕНО Сейткали Ержан — возраст вне диапазона 16..60\nОТКЛОНЕНО Ли Виктор — разбор: invalid literal for int() with base 10: 'двадцать'\nОТКЛОНЕНО Омар Дана — неизвестный курс\n"
+  }
+}

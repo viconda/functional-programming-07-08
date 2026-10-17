@@ -1,0 +1,30 @@
+{
+  "a": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "b": [
+    10,
+    2,
+    3,
+    4
+  ],
+  "shared_tail": true,
+  "stack_pop": [
+    1,
+    [
+      2,
+      3,
+      4
+    ]
+  ],
+  "queue_first_two": [
+    "A",
+    "B"
+  ],
+  "queue_remaining": "Queue(front=Cons(head='C', tail=None), back=Cons(head='D', tail=None))",
+  "old_queue_preserved": "Queue(front=None, back=Cons(head='C', tail=Cons(head='B', tail=Cons(head='A', tail=None))))",
+  "template_method": 6
+}

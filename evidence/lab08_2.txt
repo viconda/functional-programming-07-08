@@ -1,0 +1,32 @@
+{
+  "convert_map": [
+    19,
+    39,
+    59
+  ],
+  "between_filter": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "replace_map": [
+    "a_b",
+    "c_d"
+  ],
+  "defaults_early_middle_late": [
+    9,
+    9,
+    9
+  ],
+  "partial": [
+    19,
+    39,
+    59
+  ],
+  "lambda": [
+    19,
+    39,
+    59
+  ]
+}

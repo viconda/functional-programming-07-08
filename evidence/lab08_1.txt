@@ -1,0 +1,7 @@
+{
+  "words": 3,
+  "compose": "лямбда",
+  "pipe_value": 4,
+  "slugify_input": "  Привет,   Мир! Ёж и Щука  ",
+  "slugify": "privet-mir-yozh-i-shchuka"
+}

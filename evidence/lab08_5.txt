@@ -1,0 +1,41 @@
+{
+  "shipping": [
+    200,
+    300,
+    250,
+    0.0
+  ],
+  "min": 0.0,
+  "max": 300,
+  "history": [
+    {
+      "text": "",
+      "cursor": 0
+    },
+    {
+      "text": "abc",
+      "cursor": 3
+    },
+    {
+      "text": "abc",
+      "cursor": 1
+    },
+    {
+      "text": "ac",
+      "cursor": 1
+    }
+  ],
+  "undo": {
+    "text": "abc",
+    "cursor": 1
+  },
+  "redo": {
+    "text": "ac",
+    "cursor": 1
+  },
+  "branch": {
+    "text": "aXbc",
+    "cursor": 2
+  },
+  "chain_zero": 0
+}

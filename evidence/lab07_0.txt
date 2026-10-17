@@ -1,0 +1,81 @@
+{
+  "input": [
+    "лямбда",
+    "лампа"
+  ],
+  "distance": 3,
+  "operations": [
+    {
+      "kind": "replace",
+      "index": 1,
+      "old": "я",
+      "new": "а"
+    },
+    {
+      "kind": "delete",
+      "index": 3,
+      "old": "б",
+      "new": ""
+    },
+    {
+      "kind": "replace",
+      "index": 3,
+      "old": "д",
+      "new": "п"
+    }
+  ],
+  "applied": "лампа",
+  "cache": {
+    "hits": 26,
+    "misses": 30,
+    "maxsize": null,
+    "currsize": 30
+  },
+  "name_input": [
+    "Швачкина",
+    "Виктория"
+  ],
+  "name_distance": 8,
+  "name_cache": {
+    "hits": 106,
+    "misses": 81,
+    "maxsize": null,
+    "currsize": 81
+  },
+  "ties": [
+    [
+      2,
+      [
+        {
+          "kind": "delete",
+          "index": 0,
+          "old": "a",
+          "new": ""
+        },
+        {
+          "kind": "insert",
+          "index": 1,
+          "old": "",
+          "new": "a"
+        }
+      ]
+    ],
+    [
+      2,
+      [
+        {
+          "kind": "replace",
+          "index": 0,
+          "old": "a",
+          "new": "b"
+        },
+        {
+          "kind": "replace",
+          "index": 1,
+          "old": "b",
+          "new": "a"
+        }
+      ]
+    ]
+  ]
+}
