@@ -8,6 +8,7 @@ from typing import Any
 @dataclass(frozen=True)
 class Shipment:
     """Учебный заказ с массой, расстоянием и суммой."""
+
     weight: float
     distance: float
     total: float
@@ -48,6 +49,7 @@ def shipping(order: Shipment, strategy: Callable) -> float:
 @dataclass(frozen=True)
 class State:
     """Текст и курсор между символами."""
+
     text: str = ""
     cursor: int = 0
 
@@ -58,15 +60,16 @@ class State:
 
 def insert(text: str) -> Callable[[State], State]:
     """Вставить строку перед курсором и сдвинуть курсор вправо."""
-    return lambda s: State(s.text[:s.cursor] + text + s.text[s.cursor:],
-                           s.cursor + len(text))
+    return lambda s: State(
+        s.text[: s.cursor] + text + s.text[s.cursor :], s.cursor + len(text)
+    )
 
 
 def delete(n: int) -> Callable[[State], State]:
     """Удалить до n символов справа от курсора."""
     if n < 0:
         raise ValueError("n < 0")
-    return lambda s: State(s.text[:s.cursor] + s.text[s.cursor + n:], s.cursor)
+    return lambda s: State(s.text[: s.cursor] + s.text[s.cursor + n :], s.cursor)
 
 
 def move(k: int) -> Callable[[State], State]:
@@ -77,6 +80,7 @@ def move(k: int) -> Callable[[State], State]:
 @dataclass(frozen=True)
 class History:
     """История состояний; ветка redo отсекается новой командой."""
+
     states: tuple[State, ...] = (State(),)
     index: int = 0
 
@@ -87,8 +91,9 @@ class History:
 
     def execute(self, command: Callable[[State], State]) -> "History":
         """Применить команду, сохранив предыдущие версии."""
-        return History(self.states[:self.index + 1] + (command(self.current),),
-                       self.index + 1)
+        return History(
+            self.states[: self.index + 1] + (command(self.current),), self.index + 1
+        )
 
     def undo(self) -> "History":
         """Отменить один шаг, если он существует."""
@@ -108,7 +113,6 @@ def chain(request: Any, *handlers: Callable) -> Any:
     return None
 
 
-def template(data: Any, prepare: Callable, process: Callable,
-             finish: Callable) -> Any:
+def template(data: Any, prepare: Callable, process: Callable, finish: Callable) -> Any:
     """Шаблонный метод задаёт каркас и принимает заменяемые этапы."""
     return finish(process(prepare(data)))

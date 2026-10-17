@@ -7,6 +7,7 @@ from typing import Any
 @dataclass(frozen=True)
 class Cons:
     """Ячейка с общим неизменяемым хвостом."""
+
     head: Any
     tail: "Cons | None" = None
 
@@ -43,6 +44,7 @@ def pop(stack: Cons | None) -> tuple[Any, Cons | None]:
 @dataclass(frozen=True)
 class Queue:
     """Очередь на двух связных списках с сохранением старых версий."""
+
     front: Cons | None = None
     back: Cons | None = None
 

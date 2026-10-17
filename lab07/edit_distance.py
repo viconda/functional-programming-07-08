@@ -7,6 +7,7 @@ from functools import cache
 @dataclass(frozen=True)
 class Edit:
     """Позиция относится к строке после всех предыдущих операций."""
+
     kind: str
     index: int
     old: str = ""
@@ -23,8 +24,9 @@ def edit_script(
     @cache
     def go(i: int, j: int) -> tuple[int, tuple[Edit, ...]]:
         if i == len(s):
-            return len(t) - j, tuple(Edit("insert", k, new=t[k])
-                                     for k in range(j, len(t)))
+            return len(t) - j, tuple(
+                Edit("insert", k, new=t[k]) for k in range(j, len(t))
+            )
         if j == len(t):
             return len(s) - i, tuple(Edit("delete", j, old=c) for c in s[i:])
         if s[i] == t[j]:
@@ -52,7 +54,7 @@ def apply_script(s: str, ops: tuple[Edit, ...]) -> str:
         elif op.kind in ("delete", "replace"):
             if i == len(s) or s[i] != op.old:
                 raise ValueError("Сценарий не соответствует строке")
-            s = s[:i] + (op.new if op.kind == "replace" else "") + s[i + 1:]
+            s = s[:i] + (op.new if op.kind == "replace" else "") + s[i + 1 :]
         else:
             raise ValueError("Неизвестная операция")
     return s
@@ -67,8 +69,11 @@ def lev_table(s: str, t: str) -> list[list[int]]:
         d[0][j] = j
     for i in range(1, len(s) + 1):
         for j in range(1, len(t) + 1):
-            d[i][j] = min(d[i - 1][j] + 1, d[i][j - 1] + 1,
-                          d[i - 1][j - 1] + (s[i - 1] != t[j - 1]))
+            d[i][j] = min(
+                d[i - 1][j] + 1,
+                d[i][j - 1] + 1,
+                d[i - 1][j - 1] + (s[i - 1] != t[j - 1]),
+            )
     return d
 
 
@@ -78,5 +83,4 @@ def lev_plain(s: str, t: str) -> int:
         return len(s) + len(t)
     if s[0] == t[0]:
         return lev_plain(s[1:], t[1:])
-    return 1 + min(lev_plain(s[1:], t), lev_plain(s, t[1:]),
-                   lev_plain(s[1:], t[1:]))
+    return 1 + min(lev_plain(s[1:], t), lev_plain(s, t[1:]), lev_plain(s[1:], t[1:]))

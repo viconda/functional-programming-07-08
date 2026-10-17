@@ -9,11 +9,16 @@ from typing import Any
 def curry(func: Callable) -> Callable:
     """Накапливать аргументы до связывания всех обязательных параметров."""
     signature = inspect.signature(func)
-    if any(p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD)
-           for p in signature.parameters.values()):
+    if any(
+        p.kind in (p.VAR_POSITIONAL, p.VAR_KEYWORD)
+        for p in signature.parameters.values()
+    ):
         raise TypeError("curry требует конечную сигнатуру без *args и **kwargs")
-    required = {name for name, p in signature.parameters.items()
-                if p.default is inspect.Parameter.empty}
+    required = {
+        name
+        for name, p in signature.parameters.items()
+        if p.default is inspect.Parameter.empty
+    }
 
     def collect(args: tuple, kwargs: dict) -> Callable:
         @wraps(func)
@@ -27,7 +32,9 @@ def curry(func: Callable) -> Callable:
             if required <= bound.arguments.keys():
                 return func(*values, **combined)
             return collect(values, combined)
+
         return step
+
     return collect((), {})
 
 

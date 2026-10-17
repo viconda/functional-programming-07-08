@@ -52,6 +52,7 @@ def memoize(maxsize: int | None = None) -> Callable:
 
 def make_fib(decorator: Callable) -> Callable:
     """Создать независимую функцию Фибоначчи с выбранным кэшем."""
+
     @decorator
     def fib(n: int) -> int:
         if n < 0:
@@ -63,6 +64,7 @@ def make_fib(decorator: Callable) -> Callable:
 
 def make_grid(decorator: Callable) -> Callable:
     """Создать функцию числа путей по прямоугольнику ячеек."""
+
     @decorator
     def grid(m: int, n: int) -> int:
         if m < 1 or n < 1:

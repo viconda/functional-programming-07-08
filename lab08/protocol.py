@@ -22,10 +22,17 @@ def parse(line: str) -> Result:
 
 def number(raw: str) -> Result:
     """Проверить ограниченное десятичное число до преобразования."""
-    if len(raw) > 100 or re.fullmatch(r"[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)", raw) is None:
+    if (
+        len(raw) > 100
+        or re.fullmatch(r"[+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)", raw) is None
+    ):
         return Err("некорректное число")
     value = float(raw)
-    return Ok(value) if math.isfinite(value) and abs(value) <= 1e100 else Err("число слишком велико")
+    return (
+        Ok(value)
+        if math.isfinite(value) and abs(value) <= 1e100
+        else Err("число слишком велико")
+    )
 
 
 def validate(request: tuple[str, str]) -> Result:
@@ -59,35 +66,51 @@ def validate(request: tuple[str, str]) -> Result:
 def calculate(args: tuple[float, str, float]) -> float:
     """Посчитать одно проверенное арифметическое действие."""
     a, op, b = args
-    return {"+": operator.add, "-": operator.sub,
-            "*": operator.mul, "/": operator.truediv}[op](a, b)
+    return {
+        "+": operator.add,
+        "-": operator.sub,
+        "*": operator.mul,
+        "/": operator.truediv,
+    }[op](a, b)
 
 
 def stats(values: tuple[float, ...]) -> dict:
     """Статистика проверенной непустой последовательности."""
-    return {"count": len(values), "min": min(values), "max": max(values),
-            "mean": sum(values) / len(values)}
+    return {
+        "count": len(values),
+        "min": min(values),
+        "max": max(values),
+        "mean": sum(values) / len(values),
+    }
 
 
 def dispatch(request: tuple) -> Result:
     """Выбрать чистый обработчик из локального словаря."""
     command, args = request
-    handlers = {"CALC": calculate, "UPPER": str.upper, "STATS": stats,
-                "CONVERT": lambda xs: round(xs[0] * xs[2] - xs[1], 2)}
+    handlers = {
+        "CALC": calculate,
+        "UPPER": str.upper,
+        "STATS": stats,
+        "CONVERT": lambda xs: round(xs[0] * xs[2] - xs[1], 2),
+    }
     return Ok(handlers[command](args))
 
 
 def format_response(result: Result) -> str:
     """Вернуть однострочный JSON, безопасный для текстового протокола."""
-    record = ({"ok": True, "value": result.value} if isinstance(result, Ok)
-              else {"ok": False, "error": result.error})
+    record = (
+        {"ok": True, "value": result.value}
+        if isinstance(result, Ok)
+        else {"ok": False, "error": result.error}
+    )
     return json.dumps(record, ensure_ascii=False, allow_nan=False)
 
 
 def process_request(line: str) -> str:
     """Конвейер parse -> validate -> dispatch -> format_response."""
-    return pipe(parse, lambda r: r.bind(validate), lambda r: r.bind(dispatch),
-                format_response)(line)
+    return pipe(
+        parse, lambda r: r.bind(validate), lambda r: r.bind(dispatch), format_response
+    )(line)
 
 
 def request(command: str, *args: object) -> str:
@@ -98,8 +121,14 @@ def request(command: str, *args: object) -> str:
 def client_commands() -> tuple[str, ...]:
     """Использовать partial для специализации команд клиента."""
     calc, upper = partial(request, "CALC"), partial(request, "UPPER")
-    return (calc(2, "+", 3), upper("привет, мир"), request("STATS", 1, 5, 7),
-            request("CONVERT", 2, 1, 10), calc(1, "/", 0), request("UNKNOWN"))
+    return (
+        calc(2, "+", 3),
+        upper("привет, мир"),
+        request("STATS", 1, 5, 7),
+        request("CONVERT", 2, 1, 10),
+        calc(1, "/", 0),
+        request("UNKNOWN"),
+    )
 
 
 def decode_response(text: str) -> Result:

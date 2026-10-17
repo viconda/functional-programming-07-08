@@ -10,6 +10,7 @@ from typing import Any, get_type_hints
 
 def timed(func: Callable) -> Callable:
     """Сохранить время каждого вызова, включая завершившийся исключением."""
+
     @wraps(func)
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         start = time.perf_counter()
@@ -17,6 +18,7 @@ def timed(func: Callable) -> Callable:
             return func(*args, **kwargs)
         finally:
             wrapper.history.append(time.perf_counter() - start)
+
     wrapper.history = []
     return wrapper
 
@@ -31,16 +33,23 @@ def log_call(level: str = "INFO") -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
             logger = logging.getLogger(func.__module__)
-            logger.log(numeric_level, "%s args=%r kwargs=%r", func.__name__, args, kwargs)
+            logger.log(
+                numeric_level, "%s args=%r kwargs=%r", func.__name__, args, kwargs
+            )
             result = func(*args, **kwargs)
             logger.log(numeric_level, "%s -> %r", func.__name__, result)
             return result
+
         return wrapper
+
     return decorate
 
 
-def retry(times: int = 3, exceptions: tuple[type[Exception], ...] = (Exception,),
-          delay: float = 0.0) -> Callable:
+def retry(
+    times: int = 3,
+    exceptions: tuple[type[Exception], ...] = (Exception,),
+    delay: float = 0.0,
+) -> Callable:
     """times обозначает общее число попыток; последнюю ошибку пробросить."""
     if times < 1 or delay < 0:
         raise ValueError("times >= 1, delay >= 0")
@@ -57,7 +66,9 @@ def retry(times: int = 3, exceptions: tuple[type[Exception], ...] = (Exception,)
                     if delay:
                         time.sleep(delay)
             raise AssertionError("Недостижимая ветвь")
+
         return wrapper
+
     return decorate
 
 
@@ -76,6 +87,7 @@ def typecheck(func: Callable) -> Callable:
             if name in hints and type(value) is not hints[name]:
                 raise TypeError(f"{name}: ожидается {hints[name].__name__}")
         return func(*args, **kwargs)
+
     return wrapper
 
 
@@ -100,6 +112,8 @@ def ttl_cache(seconds: float, clock: Callable[[], float] = time.monotonic) -> Ca
             if seconds:
                 cache[key] = (clock() + seconds, result)
             return result
+
         wrapper.cache_clear = cache.clear
         return wrapper
+
     return decorate

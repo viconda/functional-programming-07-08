@@ -7,6 +7,7 @@ from typing import Any
 
 class Thunk:
     """Помеченный отложенный шаг, отличимый от функции-результата."""
+
     __slots__ = ("fn", "args")
 
     def __init__(self, fn: Callable, *args: Any) -> None:
@@ -47,8 +48,11 @@ def collatz_tail(n: int, steps: int = 0) -> int | Thunk:
     """Число переходов до 1; длина с начальным элементом на 1 больше."""
     if n < 1:
         raise ValueError("n должен быть положительным")
-    return steps if n == 1 else Thunk(collatz_tail,
-                                     n // 2 if n % 2 == 0 else 3 * n + 1, steps + 1)
+    return (
+        steps
+        if n == 1
+        else Thunk(collatz_tail, n // 2 if n % 2 == 0 else 3 * n + 1, steps + 1)
+    )
 
 
 def collatz_range(limit: int, use_trampoline: bool = True) -> tuple[int, ...]:
@@ -84,6 +88,7 @@ def collatz_range(limit: int, use_trampoline: bool = True) -> tuple[int, ...]:
 @dataclass(frozen=True)
 class Node:
     """Структура узла BST из работы 6 с неизменяемыми ссылками."""
+
     key: int
     left: "Node | None" = None
     right: "Node | None" = None
@@ -91,8 +96,11 @@ class Node:
 
 def dfs_recursive(tree: Node | None) -> tuple[int, ...]:
     """Эталонный прямой обход BST из работы 6."""
-    return (() if tree is None else
-            (tree.key,) + dfs_recursive(tree.left) + dfs_recursive(tree.right))
+    return (
+        ()
+        if tree is None
+        else (tree.key,) + dfs_recursive(tree.left) + dfs_recursive(tree.right)
+    )
 
 
 def dfs_stack(tree: Node | None) -> tuple[int, ...]:
@@ -117,15 +125,19 @@ def walk(tree: Node | None, depth: int = 0) -> Iterator[tuple[int, int]]:
         yield from walk(tree.right, depth + 1)
 
 
-def hanoi_recursive(n: int, src: str = "A", dst: str = "C",
-                    via: str = "B") -> tuple[tuple[str, str], ...]:
+def hanoi_recursive(
+    n: int, src: str = "A", dst: str = "C", via: str = "B"
+) -> tuple[tuple[str, str], ...]:
     """Эталон Ханойских башен для небольшого числа дисков."""
     if n < 0:
         raise ValueError("n < 0")
     if n == 0:
         return ()
-    return (hanoi_recursive(n - 1, src, via, dst) + ((src, dst),)
-            + hanoi_recursive(n - 1, via, dst, src))
+    return (
+        hanoi_recursive(n - 1, src, via, dst)
+        + ((src, dst),)
+        + hanoi_recursive(n - 1, via, dst, src)
+    )
 
 
 def hanoi_stack(n: int) -> tuple[tuple[str, str], ...]:

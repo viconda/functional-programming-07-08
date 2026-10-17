@@ -12,6 +12,7 @@ from .curry import between
 @dataclass(frozen=True)
 class Order:
     """Заказ; товары задаются парами артикул/количество."""
+
     code: str
     items: tuple[tuple[str, int], ...]
     address: str
@@ -22,12 +23,15 @@ class Order:
 
 def named_step(name: str) -> Callable:
     """Добавить имя этапа к ошибке без журнала и других побочных эффектов."""
+
     def decorate(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(value: object) -> Result:
             result = func(value)
             return Err(f"{name}: {result.error}") if isinstance(result, Err) else result
+
         return wrapper
+
     return decorate
 
 
@@ -68,18 +72,36 @@ def make_pipeline(prices: tuple[tuple[str, int], ...]) -> Callable[[str], Result
     steps = (
         parse_order,
         partial(check, lambda o: bool(o.code), "пустой код заказа"),
-        partial(check, lambda o: all(sku in catalog for sku, _ in o.items),
-                "неизвестный товар"),
-        partial(check, lambda o: all(quantity_ok(qty) for _, qty in o.items),
-                "количество вне 1..99"),
-        partial(check, lambda o: len(o.address) >= 10 and "," in o.address,
-                "неполный адрес"),
-        partial(check, lambda o: o.payment in {"card", "cash", "transfer"},
-                "неизвестный способ оплаты"),
+        partial(
+            check,
+            lambda o: all(sku in catalog for sku, _ in o.items),
+            "неизвестный товар",
+        ),
+        partial(
+            check,
+            lambda o: all(quantity_ok(qty) for _, qty in o.items),
+            "количество вне 1..99",
+        ),
+        partial(
+            check, lambda o: len(o.address) >= 10 and "," in o.address, "неполный адрес"
+        ),
+        partial(
+            check,
+            lambda o: o.payment in {"card", "cash", "transfer"},
+            "неизвестный способ оплаты",
+        ),
         partial(enrich, prices),
-        lambda o: Ok({"code": o.code, "items": o.items, "address": o.address,
-                      "payment": o.payment, "total": o.total,
-                      "delivery": o.delivery, "payable": o.total + o.delivery}),
+        lambda o: Ok(
+            {
+                "code": o.code,
+                "items": o.items,
+                "address": o.address,
+                "payment": o.payment,
+                "total": o.total,
+                "delivery": o.delivery,
+                "payable": o.total + o.delivery,
+            }
+        ),
     )
     return lambda line: reduce(lambda result, step: result.bind(step), steps, Ok(line))
 
@@ -87,5 +109,9 @@ def make_pipeline(prices: tuple[tuple[str, int], ...]) -> Callable[[str], Result
 def summarize(results: Iterable[Result]) -> dict:
     """Подсчитать успехи и распределение первой ошибки каждой записи."""
     values, errors = partition_results(results)
-    return {"success": len(values), "rejected": len(errors),
-            "errors": dict(sorted(Counter(errors).items())), "orders": values}
+    return {
+        "success": len(values),
+        "rejected": len(errors),
+        "errors": dict(sorted(Counter(errors).items())),
+        "orders": values,
+    }

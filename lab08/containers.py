@@ -8,6 +8,7 @@ from typing import Any
 @dataclass(frozen=True)
 class Some:
     """Присутствующее значение; Some(None) отличается от Nothing."""
+
     value: Any
 
     def map(self, f: Callable) -> "Some":
@@ -30,6 +31,7 @@ class Some:
 @dataclass(frozen=True)
 class Nothing:
     """Отсутствие значения, пропускающее следующие шаги."""
+
     def map(self, f: Callable) -> "Nothing":
         """Сохранить отсутствие без вызова f."""
         return self
@@ -50,6 +52,7 @@ class Nothing:
 @dataclass(frozen=True)
 class Ok:
     """Успешный результат."""
+
     value: Any
 
     def map(self, f: Callable) -> "Ok":
@@ -72,6 +75,7 @@ class Ok:
 @dataclass(frozen=True)
 class Err:
     """Явная ошибка конвейера."""
+
     error: Any
 
     def map(self, f: Callable) -> "Err":
@@ -131,9 +135,11 @@ def partition_results(results: Iterable[Result]) -> tuple[list, list]:
 
 def config_host(config: dict) -> str:
     """Безопасно извлечь config['db']['replicas'][0]['host']."""
-    return (maybe_of(config)
-            .bind(lambda c: maybe_of(c.get("db") if isinstance(c, dict) else None))
-            .bind(lambda d: maybe_of(d.get("replicas") if isinstance(d, dict) else None))
-            .bind(lambda r: maybe_of(r[0] if isinstance(r, list) and r else None))
-            .bind(lambda r: maybe_of(r.get("host") if isinstance(r, dict) else None))
-            .get_or("localhost"))
+    return (
+        maybe_of(config)
+        .bind(lambda c: maybe_of(c.get("db") if isinstance(c, dict) else None))
+        .bind(lambda d: maybe_of(d.get("replicas") if isinstance(d, dict) else None))
+        .bind(lambda r: maybe_of(r[0] if isinstance(r, list) and r else None))
+        .bind(lambda r: maybe_of(r.get("host") if isinstance(r, dict) else None))
+        .get_or("localhost")
+    )

@@ -53,10 +53,12 @@ def coin_ways(amount: int, coins: tuple[int, ...], top: bool = True) -> int:
 
 def lis(xs: tuple[int, ...], top: bool = True) -> tuple[int, tuple[int, ...]]:
     """Длина и одна строго возрастающая подпоследовательность."""
+
     @cache
     def ending(i: int) -> tuple[int, ...]:
-        prefix = max((ending(j) for j in range(i) if xs[j] < xs[i]),
-                     key=len, default=())
+        prefix = max(
+            (ending(j) for j in range(i) if xs[j] < xs[i]), key=len, default=()
+        )
         return prefix + (xs[i],)
 
     if top:
@@ -64,8 +66,9 @@ def lis(xs: tuple[int, ...], top: bool = True) -> tuple[int, tuple[int, ...]]:
     else:
         d: list[tuple[int, ...]] = []
         for i, x in enumerate(xs):
-            d.append(max((d[j] for j in range(i) if xs[j] < x),
-                         key=len, default=()) + (x,))
+            d.append(
+                max((d[j] for j in range(i) if xs[j] < x), key=len, default=()) + (x,)
+            )
         seq = max(d, key=len, default=())
     return len(seq), seq
 
@@ -75,13 +78,15 @@ def lcs_table(a: str, b: str) -> list[list[int]]:
     d = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]
     for i in range(len(a) - 1, -1, -1):
         for j in range(len(b) - 1, -1, -1):
-            d[i][j] = (1 + d[i + 1][j + 1] if a[i] == b[j]
-                       else max(d[i + 1][j], d[i][j + 1]))
+            d[i][j] = (
+                1 + d[i + 1][j + 1] if a[i] == b[j] else max(d[i + 1][j], d[i][j + 1])
+            )
     return d
 
 
 def lcs(a: str, b: str, top: bool = True) -> str:
     """Восстановить LCS; при ничьей пропустить символ первой строки."""
+
     @cache
     def go(i: int, j: int) -> str:
         if i == len(a) or j == len(b):
@@ -97,7 +102,9 @@ def lcs(a: str, b: str, top: bool = True) -> str:
     out: list[str] = []
     while i < len(a) and j < len(b):
         if a[i] == b[j]:
-            out.append(a[i]); i += 1; j += 1
+            out.append(a[i])
+            i += 1
+            j += 1
         elif d[i + 1][j] >= d[i][j + 1]:
             i += 1
         else:
@@ -105,8 +112,9 @@ def lcs(a: str, b: str, top: bool = True) -> str:
     return "".join(out)
 
 
-def knapsack(items: tuple[tuple[str, int, int], ...], capacity: int,
-             top: bool = True) -> tuple[int, tuple[str, ...]]:
+def knapsack(
+    items: tuple[tuple[str, int, int], ...], capacity: int, top: bool = True
+) -> tuple[int, tuple[str, ...]]:
     """Рюкзак 0/1 с восстановлением; одинаковые предметы различает индекс."""
     if capacity < 0 or any(w <= 0 for _, w, _ in items):
         raise ValueError("Недопустимая вместимость или масса")
@@ -131,8 +139,9 @@ def knapsack(items: tuple[tuple[str, int, int], ...], capacity: int,
             d[i][cap] = d[i + 1][cap]
             if w <= cap:
                 val, chosen = d[i + 1][cap - w]
-                d[i][cap] = max(d[i][cap], (val + v, (name,) + chosen),
-                               key=lambda x: x[0])
+                d[i][cap] = max(
+                    d[i][cap], (val + v, (name,) + chosen), key=lambda x: x[0]
+                )
     return d[0][capacity]
 
 
@@ -145,8 +154,11 @@ def min_coins(coins: tuple[int, ...], amount: int, top: bool = True) -> int:
 
     @cache
     def go(n: int) -> int:
-        return 0 if n == 0 else min((1 + go(n - c) for c in coins if c <= n),
-                                   default=infinity)
+        return (
+            0
+            if n == 0
+            else min((1 + go(n - c) for c in coins if c <= n), default=infinity)
+        )
 
     if top:
         result = go(amount)
@@ -181,7 +193,10 @@ def matrix_path(matrix: tuple[tuple[int, ...], ...], top: bool = True) -> tuple:
                 prev = ([d[i - 1][j]] if i else []) + ([d[i][j - 1]] if j else [])
                 d[i][j] = matrix[i][j] + min(prev, default=0)
         value = d[-1][-1]
-        get = lambda i, j: d[i][j]
+
+        def get(i: int, j: int) -> int:
+            return d[i][j]
+
     i, j = m - 1, n - 1
     path = [(i, j)]
     while i or j:

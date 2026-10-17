@@ -31,14 +31,20 @@ def pipe_value(x: Any, *fs: Callable) -> Any:
 def transliterate(text: str) -> str:
     """Транслитерировать русские буквы; мягкий и твёрдый знаки убрать."""
     letters = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-    replacements = ("a b v g d e yo zh z i y k l m n o p r s t u f kh ts ch sh "
-                    "shch _ y _ e yu ya").split()
+    replacements = (
+        "a b v g d e yo zh z i y k l m n o p r s t u f kh ts ch sh shch _ y _ e yu ya"
+    ).split()
     mapping = dict(zip(letters, ("" if x == "_" else x for x in replacements)))
     return "".join(mapping.get(c, c) for c in text)
 
 
 def slugify(title: str) -> str:
     """Построить slug через pipe и частично применённые замены."""
-    return pipe(str.strip, str.lower, transliterate,
-                partial(re.sub, r"[^a-z0-9]+", "-"),
-                partial(re.sub, r"-+", "-"), lambda s: s.strip("-"))(title)
+    return pipe(
+        str.strip,
+        str.lower,
+        transliterate,
+        partial(re.sub, r"[^a-z0-9]+", "-"),
+        partial(re.sub, r"-+", "-"),
+        lambda s: s.strip("-"),
+    )(title)

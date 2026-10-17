@@ -13,8 +13,10 @@ from .protocol import client_commands, decode_response, process_request
 
 def handler_factory(process: Callable) -> type[socketserver.StreamRequestHandler]:
     """Привязать обработку запросов к конкретному серверу без глобального состояния."""
+
     class Handler(socketserver.StreamRequestHandler):
         """Одна UTF-8 строка запроса и ответа на соединение."""
+
         def handle(self) -> None:
             """Прочитать ограниченную строку и отправить ответ."""
             self.request.settimeout(5)
@@ -25,6 +27,7 @@ def handler_factory(process: Callable) -> type[socketserver.StreamRequestHandler
             except UnicodeError:
                 response = '{"ok":false,"error":"invalid UTF-8"}'
             self.wfile.write((response + "\n").encode("utf-8"))
+
     return Handler
 
 
@@ -44,14 +47,20 @@ def roundtrip_demo() -> dict:
         thread.start()
         try:
             port = server.server_address[1]
-            pairs = tuple((line, send("127.0.0.1", port, line))
-                          for line in client_commands())
+            pairs = tuple(
+                (line, send("127.0.0.1", port, line)) for line in client_commands()
+            )
         finally:
             server.shutdown()
             thread.join(timeout=5)
-    return {"transport": "TCP 127.0.0.1", "port": port, "pairs": pairs,
-            "decoded": tuple(repr(decode_response(answer)) for _, answer in pairs),
-            "handler_calls": len(observed.history), "seconds": observed.history}
+    return {
+        "transport": "TCP 127.0.0.1",
+        "port": port,
+        "pairs": pairs,
+        "decoded": tuple(repr(decode_response(answer)) for _, answer in pairs),
+        "handler_calls": len(observed.history),
+        "seconds": observed.history,
+    }
 
 
 def main() -> None:
@@ -68,8 +77,9 @@ def main() -> None:
         print(decode_response(send("127.0.0.1", args.port, args.request)))
     else:
         observed = timed(log_call()(process_request))
-        with socketserver.TCPServer(("127.0.0.1", args.port),
-                                    handler_factory(observed)) as server:
+        with socketserver.TCPServer(
+            ("127.0.0.1", args.port), handler_factory(observed)
+        ) as server:
             print(f"Сервер слушает 127.0.0.1:{args.port}", flush=True)
             server.serve_forever()
 
