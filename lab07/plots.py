@@ -6,7 +6,7 @@ from pathlib import Path
 
 def timing_series(records: Iterable[dict]) -> dict:
     """Преобразовать готовые замеры в столбцы, не обращаясь к часам."""
-    rows = tuple(records)
+    rows = tuple(map(dict, records))
     return {
         key: [row[key] for row in rows] for key in ("n", "plain", "cached", "iterative")
     }
@@ -14,7 +14,7 @@ def timing_series(records: Iterable[dict]) -> dict:
 
 def call_series(records: Iterable[dict]) -> dict:
     """Подготовить число реальных выполнений и обращений к кэшу."""
-    rows = tuple(records)
+    rows = tuple(map(dict, records))
     return {
         key: [row[key] for row in rows]
         for key in ("n", "plain_calls", "misses", "hits")
